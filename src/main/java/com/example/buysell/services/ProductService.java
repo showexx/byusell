@@ -23,7 +23,6 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 	
-	
 	public void saveProduct(Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
 		Image image1;
 		Image image2;
