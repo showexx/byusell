@@ -1,6 +1,7 @@
 package com.example.buysell.configurations;
 
-import com.example.buysell.services.CustomUserDetailService;
+
+import com.example.buysell.services.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final CustomUserDetailService userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,9 +34,9 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
-                ).authenticationProvider(authenticationProvider())
-                .logout((logout) -> logout.permitAll())
-                ;
+                )
+                .authenticationProvider(authenticationProvider())
+                .logout((logout) -> logout.permitAll());
         return http.build();
     }
 
