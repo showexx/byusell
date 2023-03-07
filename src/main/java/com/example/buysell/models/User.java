@@ -2,6 +2,7 @@ package com.example.buysell.models;
 
 import com.example.buysell.models.enums.Role;
 import jakarta.persistence.*;
+import jakarta.transaction.RollbackException;
 import lombok.Data;
 import org.springframework.aop.target.LazyInitTargetSource;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,6 +44,12 @@ public class User implements UserDetails {
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
+    }
+
+    //security
+
+    public boolean isAdmin(){
+        return  roles.contains(Role.ROLE_ADMIN);
     }
 
     @Override
